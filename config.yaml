@@ -3,18 +3,20 @@
 # ==================================== Feishu(Lark) Configuration ==================================== #
 # ------------------------------------------------------------------------------------------------------------ #
 # Feishu(Lark) Bot Webhook URL
-webhook_url: 'https://open.feishu.cn/open-apis/bot/v2/hook/78c88cdc-4a21-4e6f-b477-10688f70ee58'  # TODO: Change to your Webhook URL
+# TODO: Change to your Webhook URL
+webhook_url: 'https://open.feishu.cn/open-apis/bot/v2/ho-XXX'  
 
 # Feishu(Lark) Card Template
-template_id: 'AAqxQmzptb2eW'  # TODO: Change to your template_id
-template_version_name: '1.0.5'  # TODO: Change to your template_version_name
+# TODO: Change to your template_id
+template_id: 'XXX'  
+# TODO: Change to your template_version_name
+template_version_name: '1.0.0'  
 # ------------------------------------------------------------------------------------------------------------ #
 
 
 # ==================================== Paper Configuration ==================================== #
-# ------------------------------------------------------------------------------------------------------------ #
+# TODO: 变为自己想要的领域以及关键词
 tag: 'LLM molecule'  # Tag for Feishu(Lark) Card
-
 
 category_list:  # arXiv categories to search for papers
   - cs.CL  # Computation and Language
@@ -36,12 +38,11 @@ keyword_list:  # Keywords to filter papers
 
 
 # ==================================== LLM Service Configuration ==================================== #
-# ------------------------------------------------------------------------------------------------------------ #
-
+# TODO: 配置自己的大模型api
 #### <<< LLM Server Config EXAMPLE <<< ####
 model: 'deepseek-chat'
 base_url: 'https://api.deepseek.com/v1'
-api_key: 'sk-62044b4afbfa4b439fa1207b0326843f'
+api_key: 'sk-6XXXX'
 
 
 # ------------------------------------------------------------------------------------------------------------ #
@@ -60,6 +61,6 @@ use_llm_for_filtering: false  # Set to false to disable LLM-based filtering
 # ------------------------------------------------------------------------------------------------------------ #
 
 # Use LLM for Paper Abstract Translation
-use_llm_for_translation: false  # Set to false to disable LLM-based translation
+use_llm_for_translation: true  # Set to false to disable LLM-based translation
 
 # ------------------------------------------------------------------------------------------------------------ #

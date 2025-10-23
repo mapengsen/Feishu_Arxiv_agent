@@ -1,0 +1,65 @@
+# Configuration
+
+# ==================================== Feishu(Lark) Configuration ==================================== #
+# ------------------------------------------------------------------------------------------------------------ #
+# Feishu(Lark) Bot Webhook URL
+webhook_url: 'https://open.feishu.cn/open-apis/bot/v2/hook/78c88cdc-4a21-4e6f-b477-10688f70ee58'  # TODO: Change to your Webhook URL
+
+# Feishu(Lark) Card Template
+template_id: 'AAqxQmzptb2eW'  # TODO: Change to your template_id
+template_version_name: '1.0.5'  # TODO: Change to your template_version_name
+# ------------------------------------------------------------------------------------------------------------ #
+
+
+# ==================================== Paper Configuration ==================================== #
+# ------------------------------------------------------------------------------------------------------------ #
+tag: 'LLM molecule'  # Tag for Feishu(Lark) Card
+
+
+category_list:  # arXiv categories to search for papers
+  - cs.CL  # Computation and Language
+  - cs.AI  # Artificial Intelligence
+  - q-bio.BM 
+  - cs.LG  # Machine Learning
+
+# 例如molecular + large language models：如果同时含有molecular和 large language models才可以被筛选出来
+# molecular/molecule + large language models/model：例如这里的关键词的意思就是molecular + large language models、molecule + large language models、molecular + large language model、molecule + large language model这四种都可以
+keyword_list:  # Keywords to filter papers
+  - Molecular generation
+  - molecule design
+  - molecular/molecule + large language models/model
+  - literature + large language models/model
+  # - molecule
+  # - molecular
+
+# ------------------------------------------------------------------------------------------------------------ #
+
+
+# ==================================== LLM Service Configuration ==================================== #
+# ------------------------------------------------------------------------------------------------------------ #
+
+#### <<< LLM Server Config EXAMPLE <<< ####
+model: 'deepseek-chat'
+base_url: 'https://api.deepseek.com/v1'
+api_key: 'sk-62044b4afbfa4b439fa1207b0326843f'
+
+
+# ------------------------------------------------------------------------------------------------------------ #
+
+# Use LLM for More Accurate Paper Filtering【使用使用ArXivToday-Lark/paper_to_hunt.md中的关键词用大模型再过滤一遍论文】
+use_llm_for_filtering: false  # Set to false to disable LLM-based filtering
+
+#### >>> LLM-Based Paper Filtering >>> ####
+# If set to true, `paper_to_hunt.md` file in the project root directory will be used for LLM-based filtering.
+# You can modify the prompt in `paper_to_hunt.md` to describe the paper you want to hunt for.
+#
+# If you want to use LLM-Based Filtering **only** (without Keyword Filtering), set `keyword_list` to an empty list like below:
+# keyword_list: []
+#### <<< LLM-Based Paper Filtering <<< ####
+
+# ------------------------------------------------------------------------------------------------------------ #
+
+# Use LLM for Paper Abstract Translation
+use_llm_for_translation: false  # Set to false to disable LLM-based translation
+
+# ------------------------------------------------------------------------------------------------------------ #

@@ -3,13 +3,23 @@ Utility Functions
 """
 
 import os
+import warnings
+from typing import Optional
+
 import yaml
 from openai import OpenAI
 
+warnings.filterwarnings('ignore')
 
-def load_config():
-    yaml_file = os.path.join(os.path.dirname(__file__), 'config.yaml')
-    with open(yaml_file, 'r', encoding='utf-8') as file:
+
+def load_config(config_path: Optional[str] = None):
+    if config_path is None:
+        config_path = os.path.join(os.path.dirname(__file__), 'config.yaml')
+    if not os.path.isabs(config_path):
+        config_path = os.path.abspath(config_path)
+    if not os.path.exists(config_path):
+        raise FileNotFoundError('Configuration file not found at {}'.format(config_path))
+    with open(config_path, 'r', encoding='utf-8') as file:
         return yaml.safe_load(file)
 
 

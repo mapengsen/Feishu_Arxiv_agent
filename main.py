@@ -34,6 +34,7 @@ def task(config: dict):
     keyword_list = config['keyword_list']
     use_llm_for_filtering = config['use_llm_for_filtering']
     use_llm_for_translation = config['use_llm_for_translation']
+    max_results_per_category = config.get('max_results_per_category', 100)
 
     paper_file = os.path.join(os.path.dirname(__file__), 'papers.json')
     paper_to_hunt = None
@@ -46,7 +47,7 @@ def task(config: dict):
 
     papers = []
     for category in category_list:
-        papers.extend(get_latest_papers(category, max_results=100))
+        papers.extend(get_latest_papers(category, max_results=max_results_per_category))
     print('Total papers: {}'.format(len(papers)))
 
     papers = deduplicate_papers_across_categories(papers)

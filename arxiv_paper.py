@@ -7,7 +7,7 @@ import json
 import warnings
 import arxiv
 from tqdm import tqdm
-from llm import is_paper_match, translate_abstract
+from llm import is_paper_match, translate_abstract, translate_title
 
 warnings.filterwarnings('ignore')
 
@@ -273,9 +273,11 @@ def translate_abstracts(papers: list, config: dict):
     for paper in tqdm(papers, desc='Translating Abstracts'):
         abstract = paper["abstract"]
         zh_abstract = translate_abstract(abstract, config)
-        paper["zh_abstract"] = None
-        if zh_abstract:
-            paper["zh_abstract"] = zh_abstract
+        paper["zh_abstract"] = zh_abstract if zh_abstract else None
+
+        title = paper["title"]
+        zh_title = translate_title(title, config)
+        paper["zh_title"] = zh_title if zh_title else None
     return papers
 
 

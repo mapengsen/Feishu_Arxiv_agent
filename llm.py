@@ -57,3 +57,18 @@ def translate_abstract(abstract: str, config: dict):
     # Filter out the thinking process wrapped between <think> and </think> (if any)
     translated_text = re.sub(r'<think>.*?</think>', '', translated_text, flags=re.DOTALL)
     return translated_text.strip()
+
+
+def translate_title(title: str, config: dict):
+    """
+    Translate the title using LLM
+    :param title: the title to translate
+    :param config: the configuration of LLM Server
+    :return: the translated title or None if failed
+    """
+    prompt = f'请将下面的学术论文标题翻译为中文：\n{title}\n\n**要求**：\n- 保留常见的英文学术缩写（如 LLM、NLP 等）。\n- 保持语义准确并符合中文学术表达习惯。\n- 直接返回翻译后的标题，不需要任何说明或额外内容。'
+    translated_text = get_llm_response(prompt, config)
+    if not translated_text:
+        return None
+    translated_text = re.sub(r'<think>.*?</think>', '', translated_text, flags=re.DOTALL)
+    return translated_text.strip()

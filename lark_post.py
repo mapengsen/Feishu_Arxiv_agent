@@ -18,6 +18,12 @@ def _chunk_papers(papers, batch_size):
         yield offset, papers[offset:offset + batch_size]
 
 
+def _build_pdf_url(arxiv_url: str) -> str:
+    if not arxiv_url:
+        return arxiv_url
+    return arxiv_url.replace('/abs/', '/pdf/', 1)
+
+
 def post_to_lark_webhook(tag: str, papers: list, config: dict):
     headers = {
         'Content-Type': 'application/json'
@@ -44,9 +50,11 @@ def post_to_lark_webhook(tag: str, papers: list, config: dict):
             {
                 "counter": offset + i + 1,
                 "title": paper['title'],
+                "zh_title": paper.get('zh_title', None),
                 "abstract": paper['abstract'],
                 "zh_abstract": paper.get('zh_abstract', None),
                 "url": paper['url'],
+                "pdf_url": _build_pdf_url(paper['url']),
                 "published": paper['published']
             }
             for i, paper in enumerate(chunk)
@@ -93,7 +101,8 @@ if __name__ == '__main__':
             'abstract': 'Abstract 1',
             'url': 'https://arxiv.org/abs/1234567890',
             'published': '2021-01-01',
-            'zh_abstract': None
+            'zh_abstract': None,
+            'zh_title': None
         },
         {
             'title': 'Title 2',
@@ -101,7 +110,8 @@ if __name__ == '__main__':
             'abstract': 'Abstract 2',
             'url': 'https://arxiv.org/abs/2345678901',
             'published': '2021-01-02',
-            'zh_abstract': '中文摘要 2'
+            'zh_abstract': '中文摘要 2',
+            'zh_title': '中文标题 2'
         }
     ]
     from utils import load_config

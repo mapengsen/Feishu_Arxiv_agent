@@ -9,7 +9,7 @@ import os
 import time
 import warnings
 from typing import Optional
-
+from datetime import datetime
 import schedule
 
 from utils import load_config
@@ -59,4 +59,6 @@ def main():
 
 
 if __name__ == '__main__':
+    now = datetime.now()
+    print("当前时间：", now.strftime("%Y-%m-%d %H:%M:%S"))
     main()

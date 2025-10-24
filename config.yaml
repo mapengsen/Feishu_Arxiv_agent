@@ -34,6 +34,8 @@ keyword_list:  # Keywords to filter papers
   # - molecule
   # - molecular
 
+max_results_per_category: 100  # Number of latest papers to fetch per category
+
 # ------------------------------------------------------------------------------------------------------------ #
 
 
